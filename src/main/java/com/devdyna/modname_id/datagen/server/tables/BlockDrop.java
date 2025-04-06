@@ -1,6 +1,6 @@
 package com.devdyna.modname_id.datagen.server.tables;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +11,7 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class BlockDrop extends BlockLootSubProvider {
 
@@ -20,14 +21,18 @@ public class BlockDrop extends BlockLootSubProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-                List<Block> blocks = getList(Blocks.zBlock.getEntries());
-                blocks.addAll(getList(Blocks.zBlockItem.getEntries()));
+                List<Block> blocks = new ArrayList<>();
+                blocks.addAll(getList(Blocks.zBlock));
+                blocks.addAll(getList(Blocks.zBlockItem));
                 return blocks;
         }
 
-        private List<Block> getList(Collection<DeferredHolder<Block, ? extends Block>> c) {
-                return c.stream().map(e -> (Block) e.value()).toList();
+        @SuppressWarnings("unchecked")
+        private List<Block> getList(DeferredRegister.Blocks c) {
+                return (List<Block>) c.getEntries().stream().map(DeferredHolder::get).toList();
         }
+
+        
 
         @Override
         protected void generate() {
