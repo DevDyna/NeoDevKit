@@ -10,6 +10,7 @@ import com.devdyna.modname_id.datagen.client.DataLang;
 import com.devdyna.modname_id.datagen.server.DataBlockTag;
 import com.devdyna.modname_id.datagen.server.DataItemTag;
 import com.devdyna.modname_id.datagen.server.DataLoot;
+import com.devdyna.modname_id.datagen.server.DataRecipe;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -40,6 +41,7 @@ public class Controller {
         providerGen(e, g, blocktag);
         providerGen(e, g, new DataItemTag(po, pr, blocktag.contentsGetter()));
         providerGen(e, g, new DataLoot(po, pr));
+        providerGen(e, g, new DataRecipe(po, pr));
 
     }
 
