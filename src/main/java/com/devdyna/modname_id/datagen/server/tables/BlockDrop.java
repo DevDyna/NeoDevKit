@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.devdyna.modname_id.init.types.Blocks;
+import com.devdyna.modname_id.init.types.zBlocks;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -22,8 +22,8 @@ public class BlockDrop extends BlockLootSubProvider {
         @Override
         protected Iterable<Block> getKnownBlocks() {
                 List<Block> blocks = new ArrayList<>();
-                blocks.addAll(getList(Blocks.zBlock));
-                blocks.addAll(getList(Blocks.zBlockItem));
+                blocks.addAll(getList(zBlocks.zBlock));
+                blocks.addAll(getList(zBlocks.zBlockItem));
                 return blocks;
         }
 

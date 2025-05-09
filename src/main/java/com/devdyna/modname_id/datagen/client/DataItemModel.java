@@ -2,8 +2,8 @@ package com.devdyna.modname_id.datagen.client;
 
 import static com.devdyna.modname_id.Main.MODID;
 
-import com.devdyna.modname_id.init.types.Blocks;
-import com.devdyna.modname_id.init.types.Items;
+import com.devdyna.modname_id.init.types.zBlocks;
+import com.devdyna.modname_id.init.types.zItems;
 import com.devdyna.modname_id.utils.DataGenUtil;
 
 import net.minecraft.data.PackOutput;
@@ -19,7 +19,7 @@ public class DataItemModel extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        Items.zTool.getEntries().forEach(item -> {
+        zItems.zTool.getEntries().forEach(item -> {
             try {
                 DataGenUtil.itemTool(item.get(), this);
             } catch (Exception e) {
@@ -27,7 +27,7 @@ public class DataItemModel extends ItemModelProvider {
             }
         });
 
-        Items.zItem.getEntries().forEach(item -> {
+        zItems.zItem.getEntries().forEach(item -> {
 
             try {
                 DataGenUtil.itemModel(item.get(), this);
@@ -37,7 +37,7 @@ public class DataItemModel extends ItemModelProvider {
 
         });
 
-        Blocks.zBlockItem.getEntries().forEach(block -> {
+        zBlocks.zBlockItem.getEntries().forEach(block -> {
             try {
                 DataGenUtil.itemBlock(block.get(), this);
             } catch (Exception e) {

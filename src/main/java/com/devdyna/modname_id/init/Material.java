@@ -3,12 +3,18 @@ package com.devdyna.modname_id.init;
 import java.util.function.Supplier;
 
 import com.devdyna.modname_id.Main;
-import com.devdyna.modname_id.init.types.BlockEntities;
-import com.devdyna.modname_id.init.types.BlockTag;
-import com.devdyna.modname_id.init.types.Blocks;
-import com.devdyna.modname_id.init.types.CreativeTab;
-import com.devdyna.modname_id.init.types.ItemTag;
-import com.devdyna.modname_id.init.types.Items;
+import com.devdyna.modname_id.init.types.zBlockEntities;
+import com.devdyna.modname_id.init.types.zBlockTag;
+import com.devdyna.modname_id.init.types.zBlocks;
+import com.devdyna.modname_id.init.types.zContainer;
+import com.devdyna.modname_id.init.types.zCreativeTab;
+import com.devdyna.modname_id.init.types.zFluidTags;
+import com.devdyna.modname_id.init.types.zFluidTypes;
+import com.devdyna.modname_id.init.types.zFluids;
+import com.devdyna.modname_id.init.types.zHandlers;
+import com.devdyna.modname_id.init.types.zItemTag;
+import com.devdyna.modname_id.init.types.zItems;
+import com.devdyna.modname_id.init.types.zProperties;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -17,18 +23,25 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class Material {
         public static void register(IEventBus bus) {
-                BlockEntities.register(bus);
-                Blocks.register(bus);
-                BlockTag.register(bus);
-                CreativeTab.register(bus);
-                Items.register(bus);
-                ItemTag.register(bus);
+                zBlockEntities.register(bus);
+                zBlocks.register(bus);
+                zBlockTag.register(bus);
+                zContainer.register(bus);
+                zCreativeTab.register(bus);
+                zFluidTags.register(bus);
+                zFluidTypes.register(bus);
+                zFluids.register(bus);
+                zHandlers.register(bus);
+                zItems.register(bus);
+                zItemTag.register(bus);
+                zProperties.register(bus);
         }
 
         public static final BlockBehaviour.Properties bProp = BlockBehaviour.Properties.of();
@@ -40,7 +53,7 @@ public class Material {
          * @param sup () -> new Builder
          */
         public static DeferredHolder<Block, ?> registerItemBlock(String blockname, Supplier<? extends Block> sup) {
-                return registerItemBlock(blockname, sup, Blocks.zBlockItem);
+                return registerItemBlock(blockname, sup, zBlocks.zBlockItem);
         }
 
         /**
@@ -52,7 +65,7 @@ public class Material {
         public static DeferredHolder<Block, ?> registerItemBlock(String blockname, Supplier<? extends Block> sup,
                         DeferredRegister.Blocks b) {
                 DeferredHolder<Block, ?> block = b.register(blockname, sup);
-                Items.zBlockItem.registerSimpleBlockItem(block);
+                zItems.zBlockItem.registerSimpleBlockItem(block);
                 return block;
         }
 
@@ -69,6 +82,14 @@ public class Material {
          */
         public static TagKey<Block> tagBlock(String name) {
                 return TagKey.create(BuiltInRegistries.BLOCK.key(),
+                                ResourceLocation.fromNamespaceAndPath(Main.MODID, name));
+        }
+
+        /**
+         * create an fluidtag
+         */
+        public static TagKey<Fluid> tagFluid(String name) {
+                return TagKey.create(BuiltInRegistries.FLUID.key(),
                                 ResourceLocation.fromNamespaceAndPath(Main.MODID, name));
         }
 
