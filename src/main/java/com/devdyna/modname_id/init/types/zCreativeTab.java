@@ -11,7 +11,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class CreativeTab {
+public class zCreativeTab {
         public static void register(IEventBus bus) {
                 zCreative.register(bus);
         }
@@ -29,11 +29,15 @@ public class CreativeTab {
                                         // .icon(() -> Items.IT.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
 
-                                                Items.zItem.getEntries().forEach(e -> {
+                                                zItems.zItem.getEntries().forEach(e -> {
                                                         output.accept((Item) e.get());
                                                 });
 
-                                                Items.zTool.getEntries().forEach(e -> {
+                                                zItems.zBlockItem.getEntries().forEach(e -> {
+                                                        output.accept((Item) e.get());
+                                                });
+
+                                                zItems.zTool.getEntries().forEach(e -> {
                                                         output.accept((Item) e.get());
                                                 });
 

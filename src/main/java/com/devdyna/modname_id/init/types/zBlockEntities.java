@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class BlockEntities {
+public class zBlockEntities {
     public static void register(IEventBus bus) {
         zBE.register(bus);
     }

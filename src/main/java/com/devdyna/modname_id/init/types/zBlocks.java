@@ -5,7 +5,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import com.devdyna.modname_id.Main;
 
-public class Blocks {
+public class zBlocks {
         public static void register(IEventBus bus) {
                 registerLists();
                 zBlock.register(bus);

@@ -4,7 +4,7 @@ import com.devdyna.modname_id.Main;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class Items {
+public class zItems {
     public static void register(IEventBus bus) {
         zItem.register(bus);
         zTool.register(bus);
