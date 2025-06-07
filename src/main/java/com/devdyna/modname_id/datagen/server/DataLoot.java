@@ -1,24 +1,43 @@
 package com.devdyna.modname_id.datagen.server;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
-import com.devdyna.modname_id.datagen.server.tables.BlockDrop;
+import com.devdyna.modname_id.init.types.zBlocks;
 
-import net.minecraft.core.HolderLookup.Provider;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class DataLoot extends LootTableProvider {
+public class DataLoot extends BlockLootSubProvider {
 
-    public DataLoot(PackOutput o, CompletableFuture<Provider> r) {
-        super(o, Set.of(),
-                List.of(
-                    //list of any loot table entries inside ./server/tables/
-                        new LootTableProvider.SubProviderEntry(BlockDrop::new, LootContextParamSets.BLOCK)),
-                r);
-    }
+        public DataLoot(HolderLookup.Provider l) {
+                super(Set.of(), FeatureFlags.DEFAULT_FLAGS, l);
+        }
+
+        @Override
+        protected Iterable<Block> getKnownBlocks() {
+                List<Block> blocks = new ArrayList<>();
+                blocks.addAll(getList(zBlocks.zBlock));
+                blocks.addAll(getList(zBlocks.zBlockItem));
+                return blocks;
+        }
+
+        @SuppressWarnings("unchecked")
+        private List<Block> getList(DeferredRegister.Blocks c) {
+                return (List<Block>) c.getEntries().stream().map(DeferredHolder::get).toList();
+        }
+
+        @Override
+        protected void generate() {
+                // dropSelf(Blocks.BK.get());
+
+                // Blocks.zBlock.getEntries().forEach(b -> dropSelf(b.get()));
+
+        }
 
 }
