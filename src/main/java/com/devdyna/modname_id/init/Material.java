@@ -3,18 +3,7 @@ package com.devdyna.modname_id.init;
 import java.util.function.Supplier;
 
 import com.devdyna.modname_id.Main;
-import com.devdyna.modname_id.init.types.zBlockEntities;
-import com.devdyna.modname_id.init.types.zBlockTag;
-import com.devdyna.modname_id.init.types.zBlocks;
-import com.devdyna.modname_id.init.types.zContainer;
-import com.devdyna.modname_id.init.types.zCreativeTab;
-import com.devdyna.modname_id.init.types.zFluidTags;
-import com.devdyna.modname_id.init.types.zFluidTypes;
-import com.devdyna.modname_id.init.types.zFluids;
-import com.devdyna.modname_id.init.types.zHandlers;
-import com.devdyna.modname_id.init.types.zItemTag;
-import com.devdyna.modname_id.init.types.zItems;
-import com.devdyna.modname_id.init.types.zProperties;
+import com.devdyna.modname_id.init.types.*;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -83,6 +72,22 @@ public class Material {
         public static TagKey<Block> tagBlock(String name) {
                 return TagKey.create(BuiltInRegistries.BLOCK.key(),
                                 ResourceLocation.fromNamespaceAndPath(Main.MODID, name));
+        }
+
+        /**
+         * create an itemtag
+         */
+        public static TagKey<Item> tagItem(String name, String modid) {
+                return TagKey.create(BuiltInRegistries.ITEM.key(),
+                                ResourceLocation.fromNamespaceAndPath(modid, name));
+        }
+
+        /**
+         * create an blocktag
+         */
+        public static TagKey<Block> tagBlock(String name, String modid) {
+                return TagKey.create(BuiltInRegistries.BLOCK.key(),
+                                ResourceLocation.fromNamespaceAndPath(modid, name));
         }
 
         /**
