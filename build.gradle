@@ -17,16 +17,14 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    exclusiveContent {
-        forRepository {
-            maven {
-                url "https://cursemaven.com"
-            }
-        }
-        filter {
+
+    maven {
+        url "https://cursemaven.com"
+        content {
             includeGroup "curse.maven"
         }
     }
+
 }
 
 base {
