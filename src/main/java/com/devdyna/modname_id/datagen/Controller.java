@@ -42,7 +42,7 @@ public class Controller {
         // server
         DataBlockTag blocktag = new DataBlockTag(po, pr, f);
         providerGen(e, g, blocktag);
-        providerGen(e, g, new DataItemTag(po, pr, blocktag.contentsGetter()));
+        providerGen(e, g, new DataItemTag(po, pr, blocktag.contentsGetter(),f));
         providerGen(e, g, new LootTableProvider(po, Set.of(),
                 List.of(
                         // list of any loot table entries inside ./server/tables/
